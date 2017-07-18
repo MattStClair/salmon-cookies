@@ -21,30 +21,42 @@ var pike = {
     {
       console.log(timeOfDay[i] + ':' + pike.custRand());
     }
+  },
+  render:function(){
+    var alkiUL = document.getElementById('alki');
+    for(var i = 0; i < timeOfDay.length; i++)
+    {
+      var liEl = document.createElement('li');
+      liEl.textContent = timeOfDay[i] + ': ' + pike.custRand();
+      alkiUL.appendChild(liEl);
+      console.log(timeOfDay[i] + ':' + pike.custRand());
+    }
   }
+}; ///end of function
 
-};///end of function
-
+pike.render();
 
 console.log(pike.cookiesPerHour());
 
-
 // //var alki = {
-//   name: 'Alki',
-//   seagullCount: [34, 56, 78, 14, 3000, 9000, 1200],
-//   render: function(){
-//     var alkiUL = document.getElementById('alki');
-//     // This will render the seagull data array to the DOM
-//     // We'll need a 'for' loop to iterate over the array
-//     for(var i = 0; i < this.seagullCount.length; i++){
-//       // There are three parts to this process:
-//       // 1. Create an element
-//       var liEl = document.createElement('li');
-//       // 2. Give it content
-//       liEl.textContent = days[i] + ': ' + this.seagullCount[i];
-//       // 3. Append it to a certain place in the DOM
-//       // parentElement.appendChild(childElement)
-//       alkiUL.appendChild(liEl);
-//     }
-//   }
-// };
+//    name: 'Alki',
+//    seagullCount: [34, 56, 78, 14, 3000, 9000, 1200],
+//    render: function(){
+//      var alkiUL = document.getElementById('alki');
+//      // This will render the seagull data array to the DOM
+//      // We'll need a 'for' loop to iterate over the array
+
+//      for(var i = 0; i < this.seagullCount.length; i++){
+//        // There are three parts to this process:
+//        // 1. Create an element
+//        var liEl = document.createElement('li');
+//        // 2. Give it content
+//        liEl.textContent = days[i] + ': ' + this.seagullCount[i];
+//        // 3. Append it to a certain place in the DOM
+//        // parentElement.appendChild(childElement)
+//        alkiUL.appendChild(liEl);
+//      }
+//    }
+//  };
+//
+//  alki.render();
