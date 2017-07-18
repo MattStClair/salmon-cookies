@@ -8,33 +8,43 @@ var pike = {
   avgCookies: 6.3,
   custRand: function(){
 
-    var randCustAmt = Math.floor(Math.random() * ((pike.maxCust - pike.minCust) + 1) + pike.minCust);
+    var randCustAmt = Math.floor(Math.random() * ((pike.maxCust - pike.minCust) + 1) + pike.minCust) * pike.avgCookies;
 
 
     return randCustAmt;//   //returns random customer amt to be multiplied by avg cookie for 6 am
   },
-
-  ///////////getting avg customers per hour
-
-  avgCustomersHourly: function (){
-
-    var aCH = (pike.custRand() * pike.avgCookies);
-    return aCH;
-  },
-  custPerHour: [pike.avgCustomersHourly, pike.avgCustomersHourly, pike.avgCustomersHourly, pike.avgCustomersHourly, pike.avgCustomersHourly, pike.avgCustomersHourly, pike.avgCustomersHourly],
-
-  custHourly: function(){
-    for(var i = 0; i < pike.custPerHour.length; i++)
+  //
+  // ///////////getting avg cookies per hour
+  //
+  cookiesPerHour: function (){
+    for(var i = 0; i < timeOfDay.length; i++)
     {
-      for(var t = 0; t < timeOfDay.length; t++)
-      {
-
-        return console.log('the time of day is: ' + timeOfDay[t] + ' and the amount of customers is ' + pike.avgCustomersHourly[i]);
-      }
+      console.log(timeOfDay[i] + ':' + pike.custRand());
     }
   }
-}; ///end of function
 
-console.log(pike.custHourly());
-console.log(pike.custRand());
-console.log(pike.avgCustomersHourly());
+};///end of function
+
+
+console.log(pike.cookiesPerHour());
+
+
+// //var alki = {
+//   name: 'Alki',
+//   seagullCount: [34, 56, 78, 14, 3000, 9000, 1200],
+//   render: function(){
+//     var alkiUL = document.getElementById('alki');
+//     // This will render the seagull data array to the DOM
+//     // We'll need a 'for' loop to iterate over the array
+//     for(var i = 0; i < this.seagullCount.length; i++){
+//       // There are three parts to this process:
+//       // 1. Create an element
+//       var liEl = document.createElement('li');
+//       // 2. Give it content
+//       liEl.textContent = days[i] + ': ' + this.seagullCount[i];
+//       // 3. Append it to a certain place in the DOM
+//       // parentElement.appendChild(childElement)
+//       alkiUL.appendChild(liEl);
+//     }
+//   }
+// };
