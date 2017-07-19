@@ -1,6 +1,5 @@
 'use strict';
 var timeOfDay = ['Location', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-
 var allLocation =  [];
 var cookiesPerDay = [];
 var locationsTable = document.getElementById('locationsTable');
@@ -13,9 +12,10 @@ function Place(name, minCust, maxCust, avgCookies){
     for(var i = 0; i < timeOfDay.length; i++){
       var randCustAmt = Math.ceil(Math.random() * ((maxCust - minCust) + 1)  + minCust) * avgCookies;
       return Math.trunc(randCustAmt);//
-      this.cookiesPerDay.push(hourlyCookies()); //returns random customer amt to be multiplied by avg cookie for 6 am
+      cookiesPerDay.push(this.hourlyCookies()); //returns random customer amt to be multiplied by avg cookie for 6 am
     }
   };
+  cookiesPerDay.push(this.hourlyCookies());
   this.avgCookies = avgCookies;
 
   allLocation.push(this);
@@ -41,9 +41,59 @@ new Place('Seattle Center', 11, 38, 3.7);
 new Place('Capitol Hill', 20, 38, 2.3);
 new Place('Alki', 2, 15, 4.6);
 
-console.log(allLocation[0].name, 'all location');
+// function addNumbersToInnerTable(){
+//   for(var u = 1; u < timeOfDay.length; u++)
+//   {
+//     var thEl = document.createElement('th'); //creates dresser
+//     var tdEl = document.createElement('td'); //gets clothes to fill it
+//     tdEl.textContent = cookiesPerDay[u];//assigns clothes to specific thing
+//     thEl.appendChild(tdEl); //connect clothes in dresser
+//     locationsTable.appendChild(thEl);//puts dresser in room
+//     //  //create table rows with random numbers
+//     //  var trEl = document.createElement('tr');
+//     //  var tdEl = document.createElement('td'); //creates table data
+//     // trEl.textContent = cookiesPerDay[u];
+//     // trEl.appendChild(tdEl);
+//
+//   }
+// }
 
 
+function addNumbersToInnerTable(){
+  for(var i = 0; i < timeOfDay.length; i++)
+  {
+    var trEl = document.createElement('th');
+    var thEl = document.createElement('th');
+    thEl.textContent = cookiesPerDay[i];//I want my times here...
+    trEl.appendChild(thEl);
+    locationsTable.appendChild(trEl);
+  // for (var i = 0; i < 4; i++){
+  // for(var u = 1; u < timeOfDay.length; u++)
+  // {
+  //   var thEl = document.createElement('tr'); //creates dresser
+  //   var tdEl = document.createElement('td'); //gets clothes to fill it
+  //   tdEl.textContent = cookiesPerDay[u];//assigns clothes to specific thing
+  //   thEl.appendChild(tdEl); //connect clothes in dresser
+  //   locationsTable.appendChild(thEl);//puts dresser in room
+  //   ///create table rows with random numbers
+  //   //  var trEl = document.createElement('tr');
+  //   //  var tdEl = document.createElement('td'); //creates table data
+  //   // trEl.textContent = cookiesPerDay[u];
+  //   // trEl.appendChild(tdEl);
+  // }
+  // var thEl = document.createElement('th'); //creates dresser
+  // var tdEl = document.createElement('td'); //gets clothes to fill it
+  // tdEl.textContent = cookiesPerDay[u];//assigns clothes to specific thing
+  // thEl.appendChild(tdEl); //connect clothes in dresser
+  // locationsTable.appendChild(thEl);//puts dresser in room
+  // //  //create table rows with random numbers
+  // //  var trEl = document.createElement('tr');
+  // //  var tdEl = document.createElement('td'); //creates table data
+  // // trEl.textContent = cookiesPerDay[u];
+  // // trEl.appendChild(tdEl);
+
+  }
+}
 function makeHeaderRow(){
   for(var i = 0; i < timeOfDay.length; i++)
   {
@@ -55,33 +105,15 @@ function makeHeaderRow(){
   }
 }
 
-
-function addNumbersToInnerTable(){
-  for(var u = 0; u < timeOfDay.length; u++)
-  {
-    var thEl = document.createElement('th'); //creates dresser
-    var tdEl = document.createElement('td'); //gets clothes to fill it
-    tdEl.textContent = timeOfDay[u];//assigns clothes to specific thing
-    thEl.appendChild(tdEl); //connect clothes in dresser
-    locationsTable.appendChild(thEl);//puts dresser in room
-    //  //create table rows with random numbers
-    //  var trEl = document.createElement('tr');
-    //  var tdEl = document.createElement('td'); //creates table data
-    // trEl.textContent = cookiesPerDay[u];
-    // trEl.appendChild(tdEl);
-
-  }
-}
-addNumbersToInnerTable();
-
-//
-
 function innerTable() {
   for(var i = 0; i < allLocation.length; i++){
     allLocation[i].render();
-    // addNumbersToInnerTable();
+    addNumbersToInnerTable();
+
     // //
   }
 }
 makeHeaderRow();
 innerTable();
+
+addNumbersToInnerTable();
