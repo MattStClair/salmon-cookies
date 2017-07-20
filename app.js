@@ -2,8 +2,9 @@
 
 var allLocation = [];
 var salesform = document.getElementById('sales-form');
-var times = ['Location', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+var times = ['Location', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', 'Totals'];
 var salesTable = document.getElementById('sales');
+var cookieHourlyTotals = ['Totals'];
 
 
 
@@ -22,14 +23,20 @@ function Places(name, min, max, avgCookies){ //maybe I will gather inputs to her
     trEl.appendChild(tdEl);
     tdEl.textContent = name;
     trEl.appendChild(tdEl);
-
+    salesTable.innHTML = '';
     for(var i = 0; i < 14; i++)
     {
       tdEl = document.createElement('td');
       var randCustAmt = Math.ceil(Math.random() * ((max - min) + 1)  + min) * avgCookies;
       tdEl.textContent = Math.trunc(randCustAmt);
       trEl.appendChild(tdEl);
+
+      cookieHourlyTotals.push(Math.trunc(randCustAmt));
+      //add totals and push to totals array
     }
+    tdEl = document.createElement('td');
+    tdEl.textContent = Math.trunc(randCustAmt);
+    trEl.appendChild(tdEl);
     salesTable.appendChild(trEl);
   };
 }
@@ -52,6 +59,31 @@ function makeHeaderRow(){
   }
 }
 
+// function makeEndColumn(){
+//
+//   var trHl = document.createElement('th');
+//   //loop
+//   var tdEl = document.createElement('td');
+//   tdEl.textContent = 'totals';
+//   trHl.appendChild(tdEl);
+//   salesTable.appendChild(trHl);
+//
+//
+// }
+
+// function makeFooterRow(){
+//   var trEl = document.createElement('tr');
+//   for (var i = 0; i < times.length; i++)
+//   {
+//     //creates tablerow
+//     var thEl = document.createElement('th');
+//     thEl.textContent = cookieHourlyTotals[i];//totals of cookies for that hour
+//
+//     trEl.appendChild(thEl);
+//     salesTable.appendChild(trEl);
+//   }
+// }
+
 
 function locationsRowsCreator() {
   for(var i = 0; i < allLocation.length; i++){
@@ -69,15 +101,30 @@ function handlePlaceSubmit (event){
   var avg = event.target.avg.value;////; add other html elements
 
   var store = new Places(name, min, max, avg);
-  
+  //
+  // for(var i = 0; i < allLocation.length; i++)
+  // {
+  //   if(event.target.addedPlace.value === allLocation[i].name)
+  //   {
+  //       //re-calculate numbers
+  //   }
+  //   else
+  //   {
+  //       //make a new instance and render
+  //   }
+  // }
+
   store.render();
 
 }
+
+//CREATE NEW FUNCTION WHICH WILL MAKE THE FOOTER ROW WITH THE TOTALS BRAH!
+//IT WILL BE AN ARRAY LIKE THE HEADER BUT WILL CONTAIN
 
 
 salesform.addEventListener('submit', handlePlaceSubmit);
 
 makeHeaderRow();
+// makeEndColumn();
 locationsRowsCreator();
-
-//salesform.addEventListener('submit', handlePlaceSubmit);
+// makeFooterRow();///this is where my footer row function will go
