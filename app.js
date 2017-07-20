@@ -1,14 +1,14 @@
 'use strict';
 
 var allLocation = [];
-
+var salesform = document.getElementById('sales-form');
 var times = ['Location', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-
-// We need to access the table that is in the DOM
 var salesTable = document.getElementById('sales');
 
-// We need a constructor to make our cat objects
-function Places(name, min, max, avgCookies){
+
+
+function Places(name, min, max, avgCookies){ //maybe I will gather inputs to here from form?
+// constructor
   this.name = name;
   this.min = min;
   this.max = max;
@@ -31,7 +31,7 @@ function Places(name, min, max, avgCookies){
       trEl.appendChild(tdEl);
     }
     salesTable.appendChild(trEl);
-  }
+  };
 }
 
 new Places('1st and Pike', 23, 65, 2.3);
@@ -52,11 +52,32 @@ function makeHeaderRow(){
   }
 }
 
+
 function locationsRowsCreator() {
   for(var i = 0; i < allLocation.length; i++){
     allLocation[i].render();
   }
 }
 
+
+
+function handlePlaceSubmit (event){
+  event.preventDefault();
+  var name = event.target.addedPlace.value;
+  var min = event.target.min.value;
+  var max = event.target.max.value;
+  var avg = event.target.avg.value;////; add other html elements
+
+  var store = new Places(name, min, max, avg);
+  
+  store.render();
+
+}
+
+
+salesform.addEventListener('submit', handlePlaceSubmit);
+
 makeHeaderRow();
 locationsRowsCreator();
+
+//salesform.addEventListener('submit', handlePlaceSubmit);

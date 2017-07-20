@@ -11,33 +11,50 @@
 
     <h1>Jon's Stinking Good Salmon Cookies</h1>
 
-    <form id="Enter New Location to see projected sales">
+    <form id="sales-form">
         <fieldset>
           <legend>Salmon Cookies Ba-by</legend>
 
-          <label for="who">Location: </label>
-          <input name="who" type="text" />
+          <label for="locationLabel">Location: </label>
+         <input name="addedPlace" type="text" /> <!--what user is entering aka who-->
 
-          <label for="says">Min: </label>
-          <input name="says" type="text" />
 
-          <label for="says">Max: </label>
-          <input name="says" type="text" />
+          <label for="minLabel">Minimum: </label>
+          <input name="min" type="text" /> <!--minimum   -->
 
-          <label for="says">Avg cookies sold: </label>
-          <input name="says" type="text" />
+          <label for="maxLabel"> Max: </label>
+          <input name="max" type="text" /> <!--what user is entering aka who-->
+
+          <label for="avgLabel">Average: </label>
+          <input name="avg" type="text" /> <!--what user is entering aka who-->
 
           <button type="submit">Submit Information</button>
-          
+
         </fieldset>
       </form>
 
 
-
-
-    </table>
     <table id="sales"></table>
 
+
+
+    <ul id="chat-list">Here is the textContent of the UL</ul>
+
+
+
+
     <script src="app.js"></script>
+
+
+    <!-- <label for="says">Min: </label>
+    <input name="says" type="text" /> -->
+
+    <!-- <label for="says">Max: </label>
+    <input name="says" type="text" />
+
+    <label for="says">Avg cookies sold: </label>
+    <input name="says" type="text" /> -->
+
   </body>
+
 </html>
