@@ -1,41 +1,55 @@
 'use strict';
 
-var allLocation = [];
-var salesform = document.getElementById('sales-form');
-var times = ['Location', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', 'Totals'];
+var allLocation = []; //holds location names, pushed from Places Constructor
+var salesform = document.getElementById('sales-form'); //name of form which values come from
+var times = ['Location', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', 'Totals']; //array looping across top of table
 var salesTable = document.getElementById('sales');
-var cookieHourlyTotals = ['Totals'];
+// var cookieHourlyTotals = ['Totals']; //was my bottom row
+var cookieHourlyTotals = [];
 
 
 
-function Places(name, min, max, avgCookies){ //maybe I will gather inputs to here from form?
-// constructor
+function Places(name, min, max, avgCookies){
+// constructor which recieves input from new objects
   this.name = name;
   this.min = min;
   this.max = max;
 
   allLocation.push(this);
 
-  this.render = function() {
+  this.render = function() {   //this creates a row and adds data
     var trEl = document.createElement('tr');
     var tdEl = document.createElement('td');
-    tdEl.textContent = 'Location';
+    tdEl.textContent = 'Location'; // location text in top corner
     trEl.appendChild(tdEl);
-    tdEl.textContent = name;
+    tdEl.textContent = name; //puts in name of store
     trEl.appendChild(tdEl);
     salesTable.innHTML = '';
-    for(var i = 0; i < 14; i++)
-    {
+    for(var i = 0; i < 14; i++) //loop 14 times, from location element to 7pm
+    {//when this loop occurs, I already have a location setup
       tdEl = document.createElement('td');
       var randCustAmt = Math.ceil(Math.random() * ((max - min) + 1)  + min) * avgCookies;
       tdEl.textContent = Math.trunc(randCustAmt);
       trEl.appendChild(tdEl);
-
       cookieHourlyTotals.push(Math.trunc(randCustAmt));
       //add totals and push to totals array
     }
+
+    //1.this is where I will push values to cookieHourlyTotals
+    //2.create a var to hold the added stuff
+    //3. loop it and put result in tdEl.textContent below
+
+    this.sum = function (){
+    var totalValue = 0;
+    for(var i = 0; i < times.length; i++)
+      {
+      totalValue += cookieHourlyTotals[i];
+      }
+      return totalValue;
+    }
+
     tdEl = document.createElement('td');
-    tdEl.textContent = Math.trunc(randCustAmt);
+    tdEl.textContent = Math.trunc(this.sum());//this is where my total should be, but a new one each time, it will add a new one each time in the render loop from below
     trEl.appendChild(tdEl);
     salesTable.appendChild(trEl);
   };
