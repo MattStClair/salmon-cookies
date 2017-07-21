@@ -43,11 +43,19 @@ function Places(name, min, max, avgCookies){
       trEl.appendChild(tdEl);
       salesTable.appendChild(trEl);
     }
-    salesTable.appendChild(trEl);
-}
+  };
 
   this.calcCookiesPerhour();
 };
+
+function createTotalsColumn(){
+  for(var k = 0; k < allLocations.length; k++){
+    var cookiesLastColumnTotals = document.createElement('tr');
+    cookiesLastColumnTotals.textContent = 'word';
+    //totalsThEl.appendChild(cookiesLastColumnTotals);
+    salesTable.appendChild(cookiesLastColumnTotals);
+  }
+}
 
 new Places('1st and Pike', 23, 65, 2.3);
 new Places('Seatac AirPort', 23, 65, 2.3);
@@ -72,7 +80,12 @@ function makeHeaderRow(){
   var totalsThEl = document.createElement('th');
   totalsThEl.textContent = 'Totals';
   trEl.appendChild(totalsThEl);
+
+
+  //forloop that adds all to the salesTable
+
   salesTable.appendChild(trEl);
+  //maybe where I would calculate totals, new tr?'s'
 }
 
 
@@ -90,7 +103,7 @@ function handlePlaceSubmit (event){
   var avg = event.target.avg.value;////; add other html elements
 
   var store = new Places(name, min, max, avg);
-
+  store.randomNum();
   store.render();
 
 }
