@@ -37,25 +37,37 @@ function Places(name, min, max, avgCookies){
     tdEl.textContent = this.name;
     trEl.appendChild(tdEl);
 
+    // this.createTotalsColumn = function(){
+    //   for(var k = 0; k < times.length; k++){
+    //     this.totalDailyCookies += this.totalDailyCookies;
+    //   }
+    //
+  //  };
+
     for(var j = 0; j < this.cookieHourlyTotals.length; j++) {
       tdEl = document.createElement('td');
       tdEl.textContent = this.cookieHourlyTotals[j];
       trEl.appendChild(tdEl);
-      salesTable.appendChild(trEl);
+
     }
+    // for(var i = 0; i < allLocations.length; i ++)
+    // {
+      var totalTd = document.createElement('td');
+      totalTd.textContent = this.totalDailyCookies;
+      trEl.appendChild(totalTd);
+    // }
+    salesTable.appendChild(trEl);
+    //add totals column
+    // var tdElTotal = document.createElement('td');
+    // tdElTotal.textContent = this.createTotalsColumn();
+    // tdElTotal.appendChild(tdEl);
+    // salesTable.appendChild(tdElTotal);
+    //where i put my new td
   };
 
   this.calcCookiesPerhour();
 };
 
-function createTotalsColumn(){
-  for(var k = 0; k < allLocations.length; k++){
-    var cookiesLastColumnTotals = document.createElement('tr');
-    cookiesLastColumnTotals.textContent = 'word';
-    //totalsThEl.appendChild(cookiesLastColumnTotals);
-    salesTable.appendChild(cookiesLastColumnTotals);
-  }
-}
 
 new Places('1st and Pike', 23, 65, 2.3);
 new Places('Seatac AirPort', 23, 65, 2.3);
